@@ -1,0 +1,131 @@
+Introduction to Spring Boot:-
+---------------------------------
+
+*)Work of Spring f/w : Container:
+ Container will do below works
+ a. Detect the class(Spring Bean) and creates object to it
+ b. Provide data to object(injection)
+ c. Link objects (link object with another object)
+ d. Finally Destroy the object
+
+=> Programmer has to provide 2 inputs:
+ a. Spring Bean (class + Rules given by Spring container)
+ b. Spring Configuration File (XML/Java/Annotation)
+     XML Configuration is legacy (not available in Spring boot)
+
+
+
+Q) What is Spring boot?
+A) Spring Boot is Spring Based Framework (and it is like Abstract Project)
+   which provide AutoConfiguration(common things to child project
+   and reduces programmer work).
+---Example--------------------------------------------------------
+  Spring F/w : Database Example
+  (Programmer has to follow below steps and coding part)
+1. classes : DataSource - DriverManagerDataSource
+2. Java based Configuration
+  @Configuration
+  public class AppConfig{
+    @Bean
+    public  DriverManagerDataSource ds(){
+       DriverManagerDataSource ds=new  DriverManagerDataSource();
+       ds.setDriverClassName(__);
+       ds.setUrl(__);
+       ds.setUsername(_);
+       ds.setPassword(_);
+       return ds;
+    }
+  }
+3. Jars (Maven-> ojdbc/Mysql-connector jar)
+4. Database (Download and Install)
+5. Operations (insert,update,delete and select)
+
+========================================
+
+Spring boot supports Development To Deployement Process
+
+
+ Coding => Logging => UnitTesting => Building => Deploy
+
+ Coding : Writing Project code (using STS)
+ Logging: Implementation of Log4J/Slf4J..etc
+ UnitTesting: Testing our Module/project code (JUnit/..etc)
+ Building: (Compile and Build)
+   .java -> .class  (compile)
+   .class -> .jar/.war  (build)
+      Use Maven/Gradle for Building purpose
+ 
+ Deploy : Place build file in Server and start server.
+         PCF = Pivotal Cloud Foundry, Docker ..etc
+
+==============================================================================
+ By using Spring boot Distributed Applications are implemented.
+ => An application runs in multiple devices.
+ => An application runs using any client using backend server.
+
+ Ex: Distributed app is SBI Bank App.
+
+-> What are different ways of using Bank Services.
+
+1. Manual Approch (Going to bank..)
+
+2. Netbaking 
+3. Mobile banking/Mobile Apps
+4. ATM 
+5. Tele banking/IVR(Interactive Voice Response)
+6. 3rd Parties (SBI<- using Google Pay, SBI<- Paytm..etc)
+
+** Above Applications are not actual services. They are clients.
+   Actual code is written in Backend Application, which runs in
+   server and access using HTTP Protocol.
+
+** Spring boot application mainly has 3 Layer.
+   IL = Integration Layer  (RestFul Webservices code)
+   SL = Service Layer  ( Calculations, Logics..etc)
+   DAL = Data Access Layer (DB Operations).
+   
+   
+   **Spring Core**
+1. Spring Bean = class + Follows rules given by Spring container
+
+a. class must be public type
+b. class should have package statement
+c. class can have variables declare them as private type [optional]
+d. If variables defined then provide set, get methods.
+e. Always provide default constructor
+   [Java Compiler Provides default constructor if nothing is provided]
+   We can also define Parameterized constructors
+f. We can override methods from Object(java.lang) class
+   Those are: toString, hashCode and equals Methods. [optional]
+
+  ** To override methods, method must be non-static,non-private and non-final
+
+g. Annotations we can apply Spring and Spring boot related annotations.
+   Also core annotations (Annotation defined in java.lang Package)
+
+   Integration Annotations also allowed (Hibernate with JPA,
+     JMS, JAAS annotations allowed)
+
+h. We should not inherit Technology related APIs (JavaEE) like Servlet API,
+   EJB API, Java Mail API (direct extends and implements are not allowed)
+
+** One Spring Bean can extend another Spring Bean
+** Special interface is allowed: Serializable(java.io)
+
+
+*** 2. Spring Configuration File :
+   It provides all inputs related to object creation and data setup.
+   We can define this in 3 different ways.
+   Those are: XML(Legacy), Java and Annotation**
+
+=> Spring Configuration is given for Spring Bean only.
+   Then Spring container takes two inputs Spring Bean and Configuration,
+   then creates object inside container.
+
+--Steps to write Java Based Configuration -----------
+#1. Write one public class with any name
+#2. Apply @Configuration annotation over class
+#3. Define one Method that indicates one Object
+    (no.of Methods = no.of Objects)
+#4. Apply @Bean (that indicates object creation in  container) over method
+
